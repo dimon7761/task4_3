@@ -14,7 +14,7 @@ if ! (echo "$num" | grep -E -q "^?[0-9']+$"); then echo "Error: invalid argument
 #PATCHES
 patch=$(echo "$1")
 if ! [ -d "$dest" ]; then  mkdir -p  "$dest"; echo "$dest create."; fi
-if ! [ -d "$patch" ]; then echo "Error: directory $patch does not exist" >&2; exit 0; fi
+if ! [ -d "$patch" -o -f "$patch" ]; then echo "Error: $patch does not exist" >&2; exit 0; fi
 
 #FILE
 filename=$(echo "$patch" | sed 's/^[/]*//;s/[/]*$//' | awk '{ gsub("/","-"); print }' ) #| awk '{ gsub(" ","_"); print }')
