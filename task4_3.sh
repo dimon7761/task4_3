@@ -24,7 +24,7 @@ if [ $num -gt "1" ]; then
 filelist=($(ls -t $dest | grep -e $filename | grep -v $filename.tar.gz))
 filecount=${#filelist[@]}
 for ((i=$num-2; i<$filecount; i++)); do
-rm $dest/${filelist[$i]}
+rm $dest/${filelist[$i]} >> /dev/null 2>&1
 done
 else rm $dest/$filename*  >> /dev/null 2>&1
 fi
@@ -33,7 +33,7 @@ fi
 if [ $num -gt "1" ]; then
 filecount=$(ls -f "$dest" | grep -e "$filename" | grep -v "$filename".tar.gz | wc -l)
 for ((i=$filecount; i>0; i--)); do
-mv $dest/$filename.$i.tar.gz $dest/$filename.$(($i+1)).tar.gz
+mv $dest/$filename.$i.tar.gz $dest/$filename.$(($i+1)).tar.gz >> /dev/null 2>&1
 done
 if  [ -f $(echo $dest/$filename.tar.gz) ]; then `mv $dest/$filename.tar.gz $dest/$filename.1.tar.gz`; fi
 fi
