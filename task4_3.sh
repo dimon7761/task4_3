@@ -26,7 +26,7 @@ filecount=${#filelist[@]}
 for ((i=$num-2; i<$filecount; i++)); do
 rm $dest/${filelist[$i]}
 done
-else rm $dest/$filename*  #>> /dev/null 2>&1
+else rm $dest/$filename*  >> /dev/null 2>&1
 fi
 
 #ROTATE
